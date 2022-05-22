@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lato, sans-serif;
+    background: #f5f7f9;
+}
+
+.header {
+    height: 50px;
+    background-color: rgb(187, 224, 255);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.hamburgers {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.hamburgerWrap {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 8px;
+    /*border: 8px solid rgb(187, 224, 255);*/
+    box-shadow: 0px 0px 0px 5px rgb(187, 224, 255);
+    border-radius: 32px;
+    height: 200px;
+}
+
+.hamburger {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.toppings {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.toppingWrap {
+    width: 120px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 8px;
+    box-shadow: 0px 0px 0px 5px rgb(187, 224, 255);
+    border-radius: 32px;
+    /*box-shadow: 4px 4px 15px 0px rgba(34, 60, 80, 0.2);*/
+}
+
+.unSelected {
+    /*border: 1px solid rgb(194, 194, 194);*/
+    box-shadow: 4px 4px 15px 0px rgba(34, 60, 80, 0.2);
+}
+
+.topping {
+    height: 100px;
+    width: 100px;
+    margin-top: 20px;
+}
+
+.additions {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.quantity {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 85px;
+}
+
+.btnQty {
+    width: 25px;
+}
