@@ -157,14 +157,14 @@ class Hamburger {
      * метод обновляет информацию о заказе в строке статуса (в Header)
      */
     infoUpdate() {
-        document.querySelector('.mazikQty').textContent = this.mazikQty;
-        document.querySelector('.mazikQtyTop').textContent = this.mazikQty;
         if (this.mazikQty === 0) document.querySelector('.mazik').classList.add('unSelected')
         else document.querySelector('.mazik').classList.remove('unSelected');
-        document.querySelector('.spiceQty').textContent = this.spiceQty;
-        document.querySelector('.spiceQtyTop').textContent = this.spiceQty;
         if (this.spiceQty === 0) document.querySelector('.spice').classList.add('unSelected')
         else document.querySelector('.spice').classList.remove('unSelected');
+        document.querySelector('.mazikQty').textContent = this.mazikQty;
+        document.querySelector('.mazikQtyTop').textContent = this.mazikQty;
+        document.querySelector('.spiceQty').textContent = this.spiceQty;
+        document.querySelector('.spiceQtyTop').textContent = this.spiceQty;
         document.querySelector('.totalPrice').textContent = this.getTotalPrice() + ' руб';
         document.querySelector('.totalСalories').textContent = this.getTotalCalorie();
         document.querySelector('.hamburgerType').textContent = hamburger.getHamburgerType();
