@@ -13,7 +13,25 @@ body {
     background-color: rgb(187, 224, 255);
     display: flex;
     align-items: center;
-    padding-left: 10px;
+}
+
+.itemSelected {
+    display: flex;
+    margin-left: 15px;
+}
+
+.title {
+    color: #69758d;
+}
+
+.value {
+    margin-left: 6px;
+    font-size: 16px;
+}
+
+.totals {
+    display: flex;
+    margin-left: 100px;
 }
 
 .hamburgers {

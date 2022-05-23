@@ -10,7 +10,34 @@
 </head>
 
 <body>
-    <header class="header"></header>
+    <header class="header">
+        <div class="itemSelected">
+            <span class="title">Гамбургер:</span>
+            <span class="hamburgerType value">Маленький</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Начинка:</span>
+            <span class="toppingType value">Сыр</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Майонез:</span>
+            <span class="mazikQtyTop value">0</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Приправа:</span>
+            <span class="spiceQtyTop value">0</span>
+        </div>
+        <div class="totals">
+            <div class="itemSelected">
+                <span class="title">Сумма:</span>
+                <span class="totalPrice value">0</span>
+            </div>
+            <div class="itemSelected">
+                <span class="title">Калорий:</span>
+                <span class="totalСalories value">0</span>
+            </div>
+        </div>
+    </header>
     <div class="hamburgers">
         <div class="small hamburgerWrap">
             Маленький
@@ -41,24 +68,24 @@
         </div>
     </div>
     <div class="additions">
-        <div class="toppingWrap unSelected">
+        <div class="mazik toppingWrap unSelected">
             Майонез
             <img class="topping" src="pics/mazik.png" alt="">
             20 руб
             <div class="quantity">
-                <button class="btnQty">-</button>
-                <span>0</span>
-                <button class="btnQty">+</button>
+                <button class="mazikDec btnQty">-</button>
+                <span class="mazikQty">0</span>
+                <button class="mazikInc btnQty">+</button>
             </div>
         </div>
-        <div class="toppingWrap unSelected">
+        <div class="spice toppingWrap unSelected">
             Приправа
             <img class="topping" src="pics/spice.png" alt="">
             15 руб
             <div class="quantity">
-                <button class="btnQty">-</button>
-                <span>0</span>
-                <button class="btnQty">+</button>
+                <button class="spiceDec btnQty">-</button>
+                <span class="spiceQty">0</span>
+                <button class="spiceInc btnQty">+</button>
             </div>
         </div>
     </div>
