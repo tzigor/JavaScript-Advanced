@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hamburger.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="itemSelected">
+            <span class="title">Гамбургер:</span>
+            <span class="hamburgerType value">Маленький</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Начинка:</span>
+            <span class="toppingType value">Сыр</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Майонез:</span>
+            <span class="mazikQtyTop value">0</span>
+        </div>
+        <div class="itemSelected">
+            <span class="title">Приправа:</span>
+            <span class="spiceQtyTop value">0</span>
+        </div>
+        <div class="totals">
+            <div class="itemSelected">
+                <span class="title">Сумма:</span>
+                <span class="totalPrice value">0</span>
+            </div>
+            <div class="itemSelected">
+                <span class="title">Калорий:</span>
+                <span class="totalСalories value">0</span>
+            </div>
+        </div>
+    </header>
+    <div class="hamburgers">
+        <div class="small hamburgerWrap">
+            Маленький
+            <img class="hamburger" src="pics/small.png" alt="">
+            50 руб
+        </div>
+        <div class="big hamburgerWrap unSelected">
+            Большой
+            <img class="hamburger" src="pics/big.png" alt="">
+            100 руб
+        </div>
+    </div>
+    <div class="toppings">
+        <div class="cheese toppingWrap">
+            Сыр
+            <img class="topping" src="pics/cheese.png" alt="">
+            10 руб
+        </div>
+        <div class="salad toppingWrap unSelected">
+            Салат
+            <img class="topping" src="pics/salad.png" alt="">
+            20 руб
+        </div>
+        <div class="potato toppingWrap unSelected">
+            Картошка
+            <img class="topping" src="pics/potato.png" alt="">
+            15 руб
+        </div>
+    </div>
+    <div class="additions">
+        <div class="mazik toppingWrap unSelected">
+            Майонез
+            <img class="topping" src="pics/mazik.png" alt="">
+            20 руб
+            <div class="quantity">
+                <button class="mazikDec btnQty">-</button>
+                <span class="mazikQty">0</span>
+                <button class="mazikInc btnQty">+</button>
+            </div>
+        </div>
+        <div class="spice toppingWrap unSelected">
+            Приправа
+            <img class="topping" src="pics/spice.png" alt="">
+            15 руб
+            <div class="quantity">
+                <button class="spiceDec btnQty">-</button>
+                <span class="spiceQty">0</span>
+                <button class="spiceInc btnQty">+</button>
+            </div>
+        </div>
+    </div>
+    <script src="hamburger.js"></script>
+</body>
+
+</html>
