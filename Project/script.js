@@ -52,7 +52,6 @@ class Basket {
     fetchData() {
         requestServer(startURL + basketData, (basketContent) => {
             this.basketLst = JSON.parse(basketContent);
-            debugger
         });
     }
 
