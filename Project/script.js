@@ -1,6 +1,8 @@
 const startURL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
 const catalogData = 'catalogData.json';
 const basketData = 'getBasket.json';
+const addToBasket = 'addToBasket.json';
+const removeFromBusket = '/deleteFromBasket.json';
 
 function requestServer(url, callback) {
     let xhr = new XMLHttpRequest();
