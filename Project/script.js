@@ -2,7 +2,7 @@ const startURL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-st
 const catalogData = 'catalogData.json';
 const basketData = 'getBasket.json';
 const addToBasket = 'addToBasket.json';
-const removeFromBusket = '/deleteFromBasket.json';
+const removeFromBusket = 'deleteFromBasket.json';
 
 function requestServer(url, callback) {
     let xhr = new XMLHttpRequest();
@@ -29,13 +29,7 @@ class GoodsItem {
 }
 
 class GoodsList {
-    fetchData() {
-        requestServer(startURL + catalogData, (goods) => {
-            this.list = JSON.parse(goods);
-            goodsList.render();
-            document.querySelector('.totalPrice').textContent = 'Total price: $' + goodsList.getTotalPrice();
-        });
-    }
+    list = [];
 
     getTotalPrice() {
         return this.list.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
@@ -51,16 +45,31 @@ class GoodsList {
 }
 
 class Basket {
-    fetchData() {
-        requestServer(startURL + basketData, (basketContent) => {
-            this.basketLst = JSON.parse(basketContent);
-        });
-    }
-
+    list = [];
 }
 
 const basket = new Basket();
-basket.fetchData();
-console.log(basket.basketLst);
 const goodsList = new GoodsList();
-goodsList.fetchData();
+
+function useCatalogData(data) {
+    goodsList.list = data;
+    goodsList.render();
+    document.querySelector('.totalPrice').textContent = 'Total price: $' + goodsList.getTotalPrice();
+}
+
+fetch(startURL + catalogData, {
+    method: 'get',
+    headers: {}
+})
+    .then((res) => res.json())
+    .then((data) => useCatalogData(data));
+
+fetch(startURL + basketData, {
+    method: 'get',
+    headers: {}
+})
+    .then((res) => res.json())
+    .then((data) => {
+        basket.list = data;
+        debugger
+    });

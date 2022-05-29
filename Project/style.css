@@ -5,6 +5,14 @@ body {
     font-family: Lato, sans-serif;
 }
 
+.myUl:hover {
+    list-style-type: circle;
+}
+
+.myUl {
+    list-style-type: none;
+}
+
 .header {
     height: 50px;
     background-color: rgb(187, 224, 255);
