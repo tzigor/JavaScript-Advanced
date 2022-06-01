@@ -5,13 +5,25 @@ function init() {
     const addToBasket = 'addToBasket.json';
     const removeFromBusket = 'deleteFromBasket.json';
 
+    function getServerData(url) {
+        return fetch(url).then((res) => res.json())
+    }
+
     const app = new Vue({
         el: "#root",
         data: {
-            showBasket: false,
+            basketVisible: false,
             list: [],
-            filteredList: [],
-            basketList: []
+            basketList: [],
+            searchString: ''
+        },
+        methods: {
+            showBasket() {
+                this.basketVisible = true
+            },
+            hideBasket() {
+                this.basketVisible = false
+            }
         },
         computed: {
             getTotalPrice() {
@@ -19,21 +31,22 @@ function init() {
             },
             getTotalBasketPrice() {
                 return this.list.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
+            },
+            filteredList() {
+                return this.list.filter(({ product_name }) => {
+                    return product_name.match(new RegExp(this.searchString, 'gui'))
+                })
             }
         },
         mounted() {
-            fetch(startURL + catalogData)
-                .then((res) => res.json())
-                .then((data) => {
-                    this.list = data;
-                    this.filteredList = data
-                });
-            fetch(startURL + basketData)
-                .then((res) => res.json())
-                .then((data) => {
-                    this.cart = data;
-                    this.basketList = this.cart.contents
-                });
+            getServerData(startURL + catalogData).then((data) => {
+                this.list = data;
+            });
+
+            getServerData(startURL + basketData).then((data) => {
+                this.cart = data;
+                this.basketList = this.cart.contents
+            });
         }
     });
 }
