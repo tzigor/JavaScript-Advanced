@@ -5,6 +5,14 @@ body {
     font-family: Lato, sans-serif;
 }
 
+.myUl:hover {
+    list-style-type: circle;
+}
+
+.myUl {
+    list-style-type: none;
+}
+
 .header {
     height: 50px;
     background-color: rgb(187, 224, 255);
@@ -12,6 +20,50 @@ body {
     align-items: center;
     padding-left: 10px;
 }
+
+
+.hide {
+    display: none;
+}
+
+.cartContent {
+    width: 500px;
+    z-index: 2;
+    position: absolute;
+    top: 40px;
+    left: 10;
+    background-color: white;
+    border: 1px solid #c9c8c8;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 16px;
+    box-shadow: 4px 4px 4px 0px rgba(34, 60, 80, 0.2);
+}
+
+.cartHeader {
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.cartLine {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.cartFooter {
+    font-weight: bold;
+    text-align: right;
+}
+
 
 .cart-button {
     width: 100px;
