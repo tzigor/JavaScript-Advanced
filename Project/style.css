@@ -5,25 +5,22 @@ body {
     font-family: Lato, sans-serif;
 }
 
-.myUl:hover {
-    list-style-type: circle;
-}
-
-.myUl {
-    list-style-type: none;
-}
-
 .header {
     height: 50px;
     background-color: rgb(187, 224, 255);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 10px;
 }
 
+.search {
+    margin-right: 10px;
+}
 
-.hide {
-    display: none;
+.input {
+    width: 100px;
+    margin-right: 5px;
 }
 
 .cartContent {
@@ -38,6 +35,10 @@ body {
     padding: 10px;
     font-size: 16px;
     box-shadow: 4px 4px 4px 0px rgba(34, 60, 80, 0.2);
+}
+
+.closeBasket {
+    margin-left: 477px;
 }
 
 .cartHeader {
