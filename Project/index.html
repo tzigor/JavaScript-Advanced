@@ -12,7 +12,7 @@
    <script src="script.js"></script>
 </head>
 
-<body>
+<body class="hide">
    <div id="root">
       <header class="header">
          <button @click="showBasket" class="cart-button" type="button">Корзина</button>
@@ -45,10 +45,12 @@
 
       <main>
          <div class="goods-list">
-            <div class="goods-item" v-for="item in filteredList">
+            <div v-if="noData">Нет данных</div>
+            <div v-else class="goods-item" v-for="item in filteredList">
                <div class="itemName">{{ item.product_name }}</div>
                <div class="itemPrice">${{ item.price }}</div>
             </div>
+
          </div>
       </main>
       <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>

@@ -5,6 +5,10 @@ body {
     font-family: Lato, sans-serif;
 }
 
+.hide {
+    display: none;
+}
+
 .header {
     height: 50px;
     background-color: rgb(187, 224, 255);
