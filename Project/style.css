@@ -5,6 +5,10 @@ body {
     font-family: Lato, sans-serif;
 }
 
+.hide {
+    display: none;
+}
+
 .header {
     height: 50px;
     background-color: rgb(187, 224, 255);
@@ -27,8 +31,8 @@ body {
     width: 500px;
     z-index: 2;
     position: absolute;
-    top: 40px;
-    left: 10;
+    top: 46px;
+    left: 10px;
     background-color: white;
     border: 1px solid #c9c8c8;
     border-radius: 3px;
@@ -84,9 +88,23 @@ body {
 }
 
 .goods-item {
+    display: flex;
+    flex-direction: column;
     border: 1px solid rgb(207, 207, 207);
     box-shadow: 4px 4px 6px 0px rgba(100, 100, 100, 0.2);
     padding: 10px;
+    height: 100px;
+}
+
+.itemName {
+    font-size: 20px;
+}
+
+.itemPrice {
+    align-self: flex-end;
+    margin-top: auto;
+    font-size: 18px;
+    color: rgb(160, 0, 0);
 }
 
 .totalPrice {

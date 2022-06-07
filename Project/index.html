@@ -12,18 +12,18 @@
    <script src="script.js"></script>
 </head>
 
-<body>
+<body class="hide">
    <div id="root">
       <header class="header">
-         <button class="cart-button" type="button">Корзина</button>
+         <button @click="showBasket" class="cart-button" type="button">Корзина</button>
          <div class="search">
-            <input class="input" type="text">
+            <input class="input" type="text" v-model="searchString">
             <i class="fa-solid fa-magnifying-glass" style="color: rgb(55, 0, 255)"></i>
          </div>
       </header>
 
-      <div v-if="showBasket" class="cartContent">
-         <i class="fa-regular fa-rectangle-xmark fa-lg closeBasket"></i>
+      <div v-if="basketVisible" class="cartContent">
+         <i @click="hideBasket" class="fa-regular fa-rectangle-xmark fa-lg closeBasket" style="color: red"></i>
          <div class="cartHeader">
             <div>Название товара</div>
             <div>Количество</div>
@@ -34,24 +34,26 @@
          <div class="cartLine" v-for="item in basketList">
             <div>{{ item.product_name }}</div>
             <div class="productQty"> {{ item.quantity }} шт.</div>
-            <div class="price">$ {{ item.price }}</div>
-            <div class="totalCartPrice">$ {{ item.quantity * item.price }}</div>
+            <div class="price">${{ item.price }}</div>
+            <div class="totalCartPrice">${{ item.quantity * item.price }}</div>
          </div>
 
          <div class="cartFooter">
-            Товаров в корзине на сумму: $ {{ getTotalBasketPrice }}
+            Товаров в корзине на сумму: ${{ getTotalBasketPrice }}
          </div>
       </div>
 
       <main>
          <div class="goods-list">
-            <div class="goods-item" v-for="item in filteredList">
-               <div>{{ item.product_name }}</div>
-               <div>{{ item.price }}</div>
+            <div v-if="noData">Нет данных</div>
+            <div v-else class="goods-item" v-for="item in filteredList">
+               <div class="itemName">{{ item.product_name }}</div>
+               <div class="itemPrice">${{ item.price }}</div>
             </div>
+
          </div>
       </main>
-      <div class="totalPrice">Total price: {{ getTotalPrice }}</div>
+      <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>
    </div>
 
 </body>
