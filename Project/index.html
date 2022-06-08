@@ -45,12 +45,12 @@
 
       <main>
          <div class="goods-list">
-            <div v-if="noData">Нет данных</div>
+            <goods-cart :item="item" :dataFlag="noData" v-for="item in filteredList"></goods-cart>
+            <!-- <div v-if="noData">Нет данных</div>
             <div v-else class="goods-item" v-for="item in filteredList">
                <div class="itemName">{{ item.product_name }}</div>
                <div class="itemPrice">${{ item.price }}</div>
-            </div>
-
+            </div> -->
          </div>
       </main>
       <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>

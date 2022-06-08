@@ -9,6 +9,16 @@ function init() {
         return fetch(url).then((res) => res.json())
     }
 
+    Vue.component('goods-cart', {
+        props: ['item', 'dataFlag'],
+        template: `
+        
+            < div class= "goods-item">
+            <div class="itemName">{{ item.product_name }}</div>
+            <div class="itemPrice">{{ item.price }}</div>
+        </div > `
+    });
+
     const app = new Vue({
         el: "#root",
         data: {
