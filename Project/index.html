@@ -17,7 +17,6 @@
       <header class="header">
          <cart-button @click="showBasket">Корзина</cart-button>
          <div class="search">
-            <!-- <input class="input" type="text" v-model="searchString"> -->
             <input-find v-model="searchString"></input-find>
             <i class="fa-solid fa-magnifying-glass" style="color: rgb(55, 0, 255)"></i>
          </div>
@@ -34,7 +33,10 @@
          </div>
       </main>
       <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>
-      <div v-if="serverError" class="errorMessage">HTTP error: {{ responseStatus }}</div>
+      <div v-if="serverError" class="errorMessage">
+         <i class="fa-solid fa-circle-exclamation"></i>
+         &nbsp;&nbsp;&nbsp;&nbsp;HTTP error: {{ responseStatus }}
+      </div>
    </div>
 </body>
 
