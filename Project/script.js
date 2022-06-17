@@ -1,8 +1,9 @@
 
 function init() {
-    const startURL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
+    // const startURL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
+    const startURL = 'http://localhost:8000/';
     const catalogData = 'catalogData.json';
-    const basketData = 'getBasket.json';
+    const basketData = 'getBasket';
     const addToBasket = 'addToBasket.json';
     const removeFromBusket = 'deleteFromBasket.json';
     let responseStatus = 0;
@@ -31,6 +32,8 @@ function init() {
         template: `
           <div class="goods-item">
               <div class="itemName">{{ item.product_name }}</div>
+              <button class="qtyButton">+</button>
+              <button class="qtyButton">-</button>
               <div class="itemPrice">&#36;{{ item.price }}</div>
           </div>`
     });
@@ -101,8 +104,7 @@ function init() {
                     if (responseStatus !== 200) {
                         this.showError();
                     } else {
-                        this.cart = data;
-                        this.basketList = this.cart.contents
+                        this.basketList = data;
                     }
                 });
                 this.basketVisible = true

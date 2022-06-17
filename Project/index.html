@@ -29,7 +29,7 @@
          <div v-if="noData">Нет данных</div>
          <div v-else class="goods-list">
             <goods-card v-for="item in filteredList" :item="item">
-               </goods-cart>
+            </goods-card>
          </div>
       </main>
       <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>
