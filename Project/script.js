@@ -1,6 +1,5 @@
 
 function init() {
-    // const startURL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
     const startURL = 'http://localhost:8000/';
     const catalogData = 'catalogData.json';
     const basketData = 'getBasket';
@@ -16,14 +15,14 @@ function init() {
         } catch (error) { }
     }
 
-    Vue.component('show-basket', {
-        props: {
-            basket_list: Array
-        },
-        template: `
-           <div>{{ this.basket_list }}</div>
-        `
-    });
+    // Vue.component('show-basket', {
+    //     props: {
+    //         basket_list: Array
+    //     },
+    //     template: `
+    //        <div>{{ this.basket_list }}</div>
+    //     `
+    // });
 
     Vue.component('goods-card', {
         props: {
@@ -135,7 +134,6 @@ function init() {
         mounted() {
             document.querySelector('body').classList.remove('hide');
             getServerData(startURL + catalogData).then((data) => {
-                // getServerData(startURL).then((data) => {
                 if (responseStatus !== 200) {
                     this.showError();
                 } else {
