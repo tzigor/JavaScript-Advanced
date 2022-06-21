@@ -32,8 +32,7 @@ function init() {
         template: `
           <div class="goods-item">
               <div class="itemName">{{ item.product_name }}</div>
-              <button class="qtyButton">+</button>
-              <button class="qtyButton">-</button>
+              <button class="qtyButton">Добавить</button>
               <div class="itemPrice">&#36;{{ item.price }}</div>
           </div>`
     });
