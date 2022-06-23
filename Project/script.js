@@ -15,15 +15,6 @@ function init() {
         } catch (error) { }
     }
 
-    // Vue.component('show-basket', {
-    //     props: {
-    //         basket_list: Array
-    //     },
-    //     template: `
-    //        <div>{{ this.basket_list }}</div>
-    //     `
-    // });
-
     Vue.component('goods-card', {
         props: {
             item: Object

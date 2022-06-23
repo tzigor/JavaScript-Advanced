@@ -7,8 +7,8 @@ const basket = './public/getBasket.json';
 const goods = './public/catalogData.json';
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
@@ -27,13 +27,6 @@ async function readGoods() {
 }
 
 app.get('/getBasket', (req, res) => {
-    // readBasket().then((basketList) => {
-    //     console.log(basketList);
-    // });
-    // readGoods().then((goodsList) => {
-    //     console.log(goodsList);
-    // });
-
     Promise.all([
         readBasket(),
         readGoods()
