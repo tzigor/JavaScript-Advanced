@@ -1,6 +1,7 @@
 
 function init() {
     const startURL = 'http://localhost:8000/';
+    const goods = 'catalogData';
     const catalogData = 'catalogData.json';
     const basketData = 'getBasket';
     const addToBasket = 'addToBasket.json';
@@ -15,6 +16,19 @@ function init() {
         } catch (error) { }
     }
 
+    function postServerData(url, method = 'post', body = {}) {
+        return fetch(
+            url,
+            {
+                method,
+                headers: {
+                    'Content-type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify(body)
+            }
+        )
+    }
+
     Vue.component('goods-card', {
         props: {
             item: Object
@@ -22,9 +36,18 @@ function init() {
         template: `
           <div class="goods-item">
               <div class="itemName">{{ item.product_name }}</div>
-              <button class="qtyButton">Добавить</button>
+              <button class="qtyButton" @click="this.addItem">Добавить</button>
               <div class="itemPrice">&#36;{{ item.price }}</div>
-          </div>`
+          </div>`,
+
+        methods: {
+            addItem() {
+                console.log(this.item.id_product);
+                postServerData(startURL + goods, 'POST', {
+                    id: this.item.id_product
+                })
+            }
+        }
     });
 
     Vue.component('basket', {

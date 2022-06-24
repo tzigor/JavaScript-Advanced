@@ -45,6 +45,10 @@ app.get('/getBasket', (req, res) => {
     })
 });
 
+app.post('/catalogData', (req, res) => {
+
+});
+
 app.listen('8000', () => {
     console.log('server is starting!');
 });
