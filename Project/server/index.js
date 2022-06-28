@@ -2,9 +2,10 @@ import express, { json } from "express"
 import cors from "cors"
 import { writeFile, readFile } from "fs/promises"
 import { read } from "fs";
+import { send } from "process";
 
-const basket = './public/getBasket.json';
-const goods = './public/catalogData.json';
+const basketPath = './public/getBasket.json';
+const goodsPath = './public/catalogData.json';
 
 const app = express();
 app.use(cors());
@@ -12,22 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-async function readBasket() {
-    return readFile(basket, 'utf8')
-        .then((basketData) => {
-            return JSON.parse(basketData)
-        })
-}
-
-async function readGoods() {
-    return readFile(goods, 'utf8')
-        .then((goodsData) => {
-            return JSON.parse(goodsData)
-        })
-}
-
-app.get('/getBasket', (req, res) => {
-    Promise.all([
+function getModifiedBasket() {
+    return Promise.all([
         readBasket(),
         readGoods()
     ]).then(([basketList, goodsList]) => {
@@ -40,13 +27,82 @@ app.get('/getBasket', (req, res) => {
                 ...goodsItem
             }
         });
-    }).then((result) => {
-        res.send(JSON.stringify(result));
+    })
+}
+
+async function readBasket() {
+    return readFile(basketPath, 'utf8')
+        .then((basketData) => {
+            return JSON.parse(basketData)
+        })
+}
+
+async function readGoods() {
+    return readFile(goodsPath, 'utf8')
+        .then((goodsData) => {
+            return JSON.parse(goodsData)
+        })
+}
+
+app.get('/getBasket', (res, req) => {
+    getModifiedBasket().then((result) => {
+        req.send(JSON.stringify(result));
     })
 });
 
-app.post('/catalogData', (req, res) => {
+app.post('/catalogData', (res, req) => {
+    readBasket().then((basket) => {
+        const basketItem = basket.find((item) => item.id_product === res.body.id_product);
+        if (!basketItem) {
+            basket.push(
+                {
+                    id_product: res.body.id_product,
+                    quantity: 1
+                }
+            )
+        } else {
+            basket = basket.map((item) => {
+                if (item.id_product === res.body.id_product) {
+                    return {
+                        ...item,
+                        quantity: item.quantity + 1
+                    }
+                } else {
+                    return item
+                }
+            })
+        }
+        return writeFile(basketPath, JSON.stringify(basket)).then(() => {
+            return getModifiedBasket()
+        }).then((result) => {
+            req.send(JSON.stringify(result))
+        });
+    })
+});
 
+app.delete('/catalogData', (res, req) => {
+    readBasket().then((basket) => {
+        basket = basket.map((item) => {
+            if (item.id_product === res.body.id_product) {
+                if (item.quantity > 0) {
+                    return {
+                        ...item,
+                        quantity: item.quantity - 1
+                    }
+                }
+
+            } else {
+                return item
+            }
+        });
+        const itemToDelete = basket.findIndex((item) => item.quantity === 0);
+        if (itemToDelete !== -1) basket.splice(itemToDelete, 1);
+        return writeFile(basketPath, JSON.stringify(basket)).then(() => {
+            return getModifiedBasket()
+        }).then((result) => {
+            req.send(JSON.stringify(result))
+        });
+    })
 });
 
 app.listen('8000', () => {

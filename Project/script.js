@@ -26,7 +26,7 @@ function init() {
                 },
                 body: JSON.stringify(body)
             }
-        )
+        ).then((res) => res.json())
     }
 
     Vue.component('goods-card', {
@@ -42,18 +42,19 @@ function init() {
 
         methods: {
             addItem() {
-                console.log(this.item.id_product);
                 postServerData(startURL + goods, 'POST', {
-                    id: this.item.id_product
+                    id_product: this.item.id_product
                 })
             }
         }
     });
 
     Vue.component('basket', {
-        props: {
-            basket_list: Array,
-            total_price: Number,
+        data() {
+            return {
+                basketList: [],
+                total_price: 0
+            }
         },
         template: `
         <div class="cartContent">
@@ -64,14 +65,46 @@ function init() {
               <div>Количество</div>
               <div>Цена за шт.</div>
               <div>Итого</div>
+              <div></div>
            </div>
 
-           <basket-item v-for="item in this.basket_list" :item="item"></basket-item>
+           <basket-item v-for="item in this.basketList" :item="item" @add="addItem" @del="delItem"></basket-item>
 
            <div class="cartFooter">
               Товаров в корзине на сумму: &#36;{{ this.total_price }}
            </div>
-      </div> `
+        </div> `,
+        methods: {
+            addItem(id_product) {
+                postServerData(startURL + goods, 'POST', {
+                    id_product
+                }).then((data) => {
+                    this.basketList = data;
+                    this.total_price = this.getTotalBasketPrice();
+                })
+            },
+            delItem(id_product) {
+                postServerData(startURL + goods, 'DELETE', {
+                    id_product
+                }).then((data) => {
+                    this.basketList = data;
+                    this.total_price = this.getTotalBasketPrice();
+                })
+            },
+            getTotalBasketPrice() {
+                return this.basketList.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
+            },
+        },
+        mounted() {
+            getServerData(startURL + basketData).then((data) => {
+                if (responseStatus !== 200) {
+                    this.showError();
+                } else {
+                    this.basketList = data;
+                    this.total_price = this.getTotalBasketPrice();
+                }
+            });
+        }
     });
 
     Vue.component('basket-item', {
@@ -84,6 +117,10 @@ function init() {
               <div class="productQty">{{ item.quantity }} шт.</div>
               <div class="price">&#36;{{ item.price }}</div>
               <div class="totalCartPrice">&#36;{{ item.quantity * item.price }}</div>
+              <div>
+                 <button @click="$emit('del', item.id_product)" class="basketItemBtn">-</button>
+                 <button @click="$emit('add', item.id_product)" class="basketItemBtn">+</button>
+              </div>
            </div>`
     });
 
@@ -112,13 +149,6 @@ function init() {
         },
         methods: {
             showBasket() {
-                getServerData(startURL + basketData).then((data) => {
-                    if (responseStatus !== 200) {
-                        this.showError();
-                    } else {
-                        this.basketList = data;
-                    }
-                });
                 this.basketVisible = true
             },
             closeBasket() {
@@ -135,9 +165,7 @@ function init() {
                 if (this.list !== undefined)
                     return this.list.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
             },
-            getTotalBasketPrice() {
-                return this.basketList.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
-            },
+
             filteredList() {
                 if (this.list !== undefined)
                     return this.list.filter(({ product_name }) => {
