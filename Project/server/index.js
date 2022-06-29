@@ -82,7 +82,7 @@ app.post('/catalogData', (res, req) => {
 
 app.delete('/catalogData', (res, req) => {
     readBasket().then((basket) => {
-        basket = basket.map((item) => {
+        basket = basket.map((item, index) => {
             if (item.id_product === res.body.id_product) {
                 if (item.quantity > 0) {
                     return {
