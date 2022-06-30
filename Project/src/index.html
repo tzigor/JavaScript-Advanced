@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>eShop</title>
+   <script src="https://kit.fontawesome.com/e7b2594638.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body class="hide">
+   <div id="root">
+      <header class="header">
+         <cart-button @click="showBasket">Корзина</cart-button>
+         <div class="search">
+            <input-find v-model="searchString"></input-find>
+            <i class="fa-solid fa-magnifying-glass" style="color: rgb(55, 0, 255)"></i>
+         </div>
+      </header>
+
+      <basket @close="closeBasket" v-if="basketVisible">
+      </basket>
+
+      <main>
+         <div v-if="noData">Нет данных</div>
+         <div v-else class="goods-list">
+            <goods-card v-for="item in filteredList" :item="item">
+            </goods-card>
+         </div>
+      </main>
+      <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>
+      <div v-if="serverError" class="errorMessage">
+         <i class="fa-solid fa-circle-exclamation"></i>
+         &nbsp;&nbsp;&nbsp;&nbsp;HTTP error: {{ responseStatus }}
+      </div>
+   </div>
+</body>
+
+</html>

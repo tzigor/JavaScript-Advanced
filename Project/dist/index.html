@@ -5,12 +5,10 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="style.css">
    <title>eShop</title>
    <script src="https://kit.fontawesome.com/e7b2594638.js" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-   <script src="script.js"></script>
-</head>
+<script defer src="index.js"></script></head>
 
 <body class="hide">
    <div id="root">
@@ -22,14 +20,14 @@
          </div>
       </header>
 
-      <basket @close="closeBasket" v-if="basketVisible" :basket_list="basketList" :total_price="getTotalBasketPrice">
+      <basket @close="closeBasket" v-if="basketVisible">
       </basket>
 
       <main>
          <div v-if="noData">Нет данных</div>
          <div v-else class="goods-list">
             <goods-card v-for="item in filteredList" :item="item">
-               </goods-cart>
+            </goods-card>
          </div>
       </main>
       <div class="totalPrice">Total price: ${{ getTotalPrice }}</div>

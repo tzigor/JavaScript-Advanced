@@ -28,7 +28,7 @@ body {
 }
 
 .cartContent {
-    width: 500px;
+    width: 550px;
     z-index: 2;
     position: absolute;
     top: 46px;
@@ -42,13 +42,13 @@ body {
 }
 
 .closeBasket {
-    margin-left: 477px;
+    margin-left: 527px;
 }
 
 .cartHeader {
     font-weight: bold;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-bottom: 1px solid #cccccc;
     margin-bottom: 10px;
@@ -57,7 +57,7 @@ body {
 
 .cartLine {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     border-bottom: 1px solid #ebebeb;
     margin-bottom: 10px;
@@ -93,11 +93,19 @@ body {
     border: 1px solid rgb(207, 207, 207);
     box-shadow: 4px 4px 6px 0px rgba(100, 100, 100, 0.2);
     padding: 10px;
-    height: 100px;
+}
+
+.qtyButton {
+    width: 80px;
+}
+
+.basketItemBtn {
+    width: 25px;
 }
 
 .itemName {
     font-size: 20px;
+    margin-bottom: 60px;
 }
 
 .itemPrice {
