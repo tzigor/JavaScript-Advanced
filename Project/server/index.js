@@ -1,8 +1,8 @@
 import express, { json } from "express"
 import cors from "cors"
 import { writeFile, readFile } from "fs/promises"
-import { read } from "fs";
-import { send } from "process";
+// import { read } from "fs";
+// import { send } from "process";
 
 const basketPath = './public/getBasket.json';
 const goodsPath = './public/catalogData.json';
