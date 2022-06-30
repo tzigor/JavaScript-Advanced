@@ -1,3 +1,6 @@
+import { getServerData, postServerData } from '../../webServices';
+import { startURL, goods, catalogData, basketData } from '../../constants';
+
 export default Vue.component('goods-card', {
     props: {
         item: Object

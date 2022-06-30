@@ -44,7 +44,7 @@ export default Vue.component('basket', {
             })
         },
         getTotalBasketPrice() {
-            return this.basketList.reduce((accumulator, { price = 0 }) => accumulator + price, 0);
+            return this.basketList.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0);
         },
     },
     mounted() {
